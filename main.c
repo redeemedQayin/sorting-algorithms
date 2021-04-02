@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//--------[MENU]------
+//------------[MENU]------
+
+//algorithm
 void menu1_alg(int *alg){
 
 	system("clear");
@@ -12,6 +14,8 @@ void menu1_alg(int *alg){
 
 	scanf("%d", alg);
 }
+
+//lenght of vector
 void menu2_lenghtVet(int *lenght){
 
 	system("clear");
@@ -20,7 +24,9 @@ void menu2_lenghtVet(int *lenght){
 	scanf("%d", lenght);
 
 }
-void menu3_typeOfVet(int *type){
+
+//type of vector
+void menu3_typeOfVet(int *type, int *vet, int n){
 	system("clear");
         printf("------- sorting algorithms ------------\n\n[SELECT VECTOR TYPE]\n");
 
@@ -29,20 +35,42 @@ void menu3_typeOfVet(int *type){
 	printf("3- repeated\n");
 
 	scanf("%d", type);
+	for(int i = 0; i < n; i++){
+		vet[i] = i;
+	}
 }
 //--------------------
 
+//-------- Algorithms ---------
+
+//buble sort
+int bubleSort(){
+	
+}
+
 int main(){
-	int op, algorithm, lenght_vet, type;
+	int i, op, algorithm, lenght_vet, type;
+	
 	do{
 
 		menu1_alg(&algorithm);
 		menu2_lenghtVet(&lenght_vet);
-		menu3_typeOfVet(&type);
+		int vet[lenght_vet];
+		menu3_typeOfVet(&type, vet, lenght_vet);
 
-		//apagar isso depois
-		printf("as opcoes escolhidas foram:\n%d, %d, %d\n\n", algorithm, lenght_vet, type);
-		op = algorithm;
+		system("clear");
+		printf("\nCurrent vector:\n");
+		for(i=0; i < lenght_vet; i++){
+			printf("[%d] ",vet[i]); 
+		}
+
+		
+		
+		printf("\nvector order:\n");
+                for(i=0; i < lenght_vet; i++){
+                        printf("[%d] ",vet[i]);
+                }
+		printf("\n");
 		getchar();
 		getchar();
 
