@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <time.h>
 //------------[MENU]------
 
 //algorithm
@@ -35,8 +35,12 @@ void menu3_typeOfVet(int *type, int *vet, int n){
 	printf("3- repeated\n");
 
 	scanf("%d", type);
+
+	
+	//random numbers
+	srand(time(NULL));
 	for(int i = 0; i < n; i++){
-		vet[i] = i;
+		vet[i] = rand()%(n*100);
 	}
 }
 //--------------------
@@ -44,8 +48,19 @@ void menu3_typeOfVet(int *type, int *vet, int n){
 //-------- Algorithms ---------
 
 //buble sort
-int bubleSort(){
-	
+int bubleSort(int *vet, int lenght){
+	int i;
+	for(i=lenght; i>1; i--){
+		for(int j = 0; j < i-1; j++){
+			if( vet[j] > vet[j+1]){
+				int aux = vet[j];
+				vet[j] = vet[j+1];
+				vet[j+1] = aux;
+			}
+		}
+
+	}
+	return 0;
 }
 
 int main(){
@@ -64,7 +79,7 @@ int main(){
 			printf("[%d] ",vet[i]); 
 		}
 
-		
+		bubleSort(vet, lenght_vet);
 		
 		printf("\nvector order:\n");
                 for(i=0; i < lenght_vet; i++){
