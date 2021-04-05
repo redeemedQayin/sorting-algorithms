@@ -1,25 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "library/Csort.h"
 //------------[MENU]------
 
+void layout(){
+	system("clear");
+	printf("------- sorting algorithms ------------\n-enter 0 to exit-\n\n");
+
+}
+
+//--options -----
 //algorithm
 void menu1_alg(int *alg){
 
-	system("clear");
-	printf("------- sorting algorithms ------------\n\n[SELECT THE ALGORITHM]\n");
-
+	int n;
+	layout();
+	printf("\n[SELECT THE ALGORITHM]\n");
 	printf("1- buble sort\n");
-
+	printf("2- selection sort\n");
 
 	scanf("%d", alg);
+
 }
 
 //lenght of vector
 void menu2_lenghtVet(int *lenght){
 
-	system("clear");
-        printf("------- sorting algorithms ------------\n\n[SELECT LENGHT OF THE VECTOR]\n");
+	int n;
+	layout();
+    printf("[SELECT LENGHT OF THE VECTOR]\n");
 
 	scanf("%d", lenght);
 
@@ -27,40 +37,41 @@ void menu2_lenghtVet(int *lenght){
 
 //type of vector
 void menu3_typeOfVet(int *type, int *vet, int n){
-	system("clear");
-        printf("------- sorting algorithms ------------\n\n[SELECT VECTOR TYPE]\n");
 
-	printf("1- random\n");
-	printf("2- sorted\n");
-	printf("3- repeated\n");
+	int aux;
+	layout();
+    printf("[SELECT VECTOR TYPE]\n");
+
+	printf("1- full random\n");
+	//printf("2- numbers already sorted asc\n");
+	//printf("3- enter vector\n");
 
 	scanf("%d", type);
 
-	
-	//random numbers
-	srand(time(NULL));
-	for(int i = 0; i < n; i++){
-		vet[i] = rand()%(n*100);
+	//colocar em uma funçãon separada
+	switch(*type){
+		//random
+		case 1:
+			srand(time(NULL));
+			for(int i = 0; i < n; i++){
+				vet[i] = rand()%100;
+			}
+		break;
+
+		default:
+			printf("Invalid option!\n[ABORT]\n");
+			*type = 0;
+
 	}
 }
 //--------------------
 
-//-------- Algorithms ---------
+void printVector(int *vet, int lenght){
 
-//buble sort
-int bubleSort(int *vet, int lenght){
-	int i;
-	for(i=lenght; i>1; i--){
-		for(int j = 0; j < i-1; j++){
-			if( vet[j] > vet[j+1]){
-				int aux = vet[j];
-				vet[j] = vet[j+1];
-				vet[j+1] = aux;
-			}
-		}
-
+	for(int i=0; i < lenght; i++){
+		printf("[%d] ",vet[i]); 
 	}
-	return 0;
+	printf("\n");
 }
 
 int main(){
@@ -68,23 +79,41 @@ int main(){
 	
 	do{
 
-		menu1_alg(&algorithm);
-		menu2_lenghtVet(&lenght_vet);
+		menu1_alg(&op);
+		if(!op) break; else algorithm = op;
+
+		menu2_lenghtVet(&op);
+		if(!op) break; else lenght_vet = op;
+
 		int vet[lenght_vet];
-		menu3_typeOfVet(&type, vet, lenght_vet);
+
+		menu3_typeOfVet(&op, vet, lenght_vet);
+		if(!op) break; else type = op;
 
 		system("clear");
-		printf("\nCurrent vector:\n");
-		for(i=0; i < lenght_vet; i++){
-			printf("[%d] ",vet[i]); 
-		}
 
-		bubleSort(vet, lenght_vet);
+
+		//validation
+		if(lenght_vet)
+
+		printf("\ninitial vector:\n");
+		printVector(vet, lenght_vet);
+
+		switch(algorithm){
+			case 1:
+				printf("\n[RUNNING BUBBLE SORT]\n");
+				bubleSort(vet, lenght_vet);
+			break;
+
+			case 2:
+				printf("\n[RUNNING SELECTION SORT]\n");
+				selectionSort(vet, lenght_vet);
+
+		}
 		
-		printf("\nvector order:\n");
-                for(i=0; i < lenght_vet; i++){
-                        printf("[%d] ",vet[i]);
-                }
+		printf("\nsorted vector:\n");
+        printVector(vet, lenght_vet);
+
 		printf("\n");
 		getchar();
 		getchar();
