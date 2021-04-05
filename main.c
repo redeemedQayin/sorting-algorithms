@@ -19,6 +19,7 @@ void menu1_alg(int *alg){
 	printf("\n[SELECT THE ALGORITHM]\n");
 	printf("1- buble sort\n");
 	printf("2- selection sort\n");
+	printf("3- insertion sort\n");
 
 	scanf("%d", alg);
 
@@ -108,6 +109,12 @@ int main(){
 			case 2:
 				printf("\n[RUNNING SELECTION SORT]\n");
 				selectionSort(vet, lenght_vet);
+			break;
+
+			case 3:
+				printf("\n[RUNNING INSERTION SORT]\n");
+				insertionSort(vet, lenght_vet);
+			break;
 
 		}
 		

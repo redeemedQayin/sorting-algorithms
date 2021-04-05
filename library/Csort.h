@@ -11,6 +11,11 @@ int getLower(int *vet, int n){
 	return lower;
 }
 
+void swap(int *vet, int n1, int n2){
+	int aux = vet[n1];
+	vet[n1] = vet[n2];
+	vet[n2] = aux;
+}
 
 //bubble sort
 void bubleSort(int *vet, int lenght){
@@ -36,11 +41,18 @@ void selectionSort(int *vet, int lenght){
 
 		min_index = getLower(&vet[i], lenght-i) + i;
 		
-		aux = vet[i];
-		vet[i] = vet[min_index];
-		vet[min_index] = aux;
+		swap(vet, i, min_index);
 	}
 }
 
-
+//insertion sort
+void insertionSort(int *vet, int lenght){
+	int i, j, aux;
+	for(i=1; i < lenght; i++){
+		for(j=i; vet[j] < vet[j-1] && j > 0; j--){
+			swap(vet, j, j-1);
+		}
+		
+	}
+}
 
