@@ -1,2 +1,2 @@
 # sorting-algorithms
-implementations of ordering algorithms for academic purposes
+library whit implementation of some sorting algorithms 
