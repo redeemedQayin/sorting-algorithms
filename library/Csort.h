@@ -17,13 +17,6 @@ void swap(int *vet, int n1, int n2){
 	vet[n2] = aux;
 }
 
-void printVector2(int *vet, int lenght){
-
-	for(int i=0; i < lenght; i++){
-		printf("[%d] ",vet[i]); 
-	}
-	printf("\n");
-}
 
 void merge(int *vet, int begin, int mid, int end){
 	int *aux;
@@ -44,6 +37,22 @@ void merge(int *vet, int begin, int mid, int end){
 	
 }
 
+int getPivot(int *vet, int begin, int end){
+	int pivot = vet[end];
+	int i = begin;
+	for(int j = begin; j < end; j++){
+		if(vet[j] <= pivot){
+			int aux = vet[j];
+			vet[j] = vet[i];
+			vet[i++] = aux;
+		}
+	}
+	int aux = vet[end];
+	vet[end] = vet[i];
+	vet[i] = aux;
+
+	return i;
+}
 
 //bubble sort
 void bubleSort(int *vet, int lenght){
@@ -94,3 +103,10 @@ void mergeSort(int *vet, int begin, int end){
 	}
 }
 
+void quickSort(int *vet, int begin, int end){
+	if(end>begin){
+		int pivot = getPivot(vet, begin, end);
+		quickSort(vet, begin, pivot-1);
+		quickSort(vet, pivot+1, end);
+	}
+}

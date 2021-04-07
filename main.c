@@ -21,6 +21,7 @@ void menu1_alg(int *alg){
 	printf("2- selection sort\n");
 	printf("3- insertion sort\n");
 	printf("4- merge sort\n");
+	printf("5- quick sort\n");
 
 	scanf("%d", alg);
 
@@ -118,8 +119,13 @@ int main(){
 			break;
 
 			case 4:
-				printf("\n[RUNNING MERGE SORT\n");
+				printf("\n[RUNNING MERGE SORT]\n");
 				mergeSort(vet, 0, lenght_vet);
+			break;
+
+			case 5:
+				printf("\n[RUNNING QUICK SORT]\n");
+				quickSort(vet, 0, lenght_vet-1);
 
 		}
 		
