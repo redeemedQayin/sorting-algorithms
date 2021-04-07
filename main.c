@@ -20,6 +20,7 @@ void menu1_alg(int *alg){
 	printf("1- buble sort\n");
 	printf("2- selection sort\n");
 	printf("3- insertion sort\n");
+	printf("4- merge sort\n");
 
 	scanf("%d", alg);
 
@@ -115,6 +116,10 @@ int main(){
 				printf("\n[RUNNING INSERTION SORT]\n");
 				insertionSort(vet, lenght_vet);
 			break;
+
+			case 4:
+				printf("\n[RUNNING MERGE SORT\n");
+				mergeSort(vet, 0, lenght_vet);
 
 		}
 		

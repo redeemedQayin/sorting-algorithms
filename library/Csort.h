@@ -17,6 +17,34 @@ void swap(int *vet, int n1, int n2){
 	vet[n2] = aux;
 }
 
+void printVector2(int *vet, int lenght){
+
+	for(int i=0; i < lenght; i++){
+		printf("[%d] ",vet[i]); 
+	}
+	printf("\n");
+}
+
+void merge(int *vet, int begin, int mid, int end){
+	int *aux;
+	aux = (int *)malloc((end-begin)*sizeof(int));
+	int i = begin, j = mid, k = 0;
+
+	while(i < mid && j < end){
+		if(vet[i] <= vet[j]) aux[k++] = vet[i++];
+		else
+			aux[k++] = vet[j++];
+	}
+	while(i < mid) aux[k++] = vet[i++];
+	while(j < end) aux[k++] = vet[j++];
+
+	for(i=begin; i < end; i++)
+		vet[i] = aux[i-begin];
+	free(aux);
+	
+}
+
+
 //bubble sort
 void bubleSort(int *vet, int lenght){
 	int i;
@@ -29,7 +57,6 @@ void bubleSort(int *vet, int lenght){
 				vet[j+1] = aux;
 			}
 		}
-
 	}
 }
 
@@ -53,6 +80,17 @@ void insertionSort(int *vet, int lenght){
 			swap(vet, j, j-1);
 		}
 		
+	}
+}
+
+//merge sort
+void mergeSort(int *vet, int begin, int end){
+	if(end-begin > 1){
+		int mid = (end+begin)/2;
+		mergeSort(vet, begin, mid);
+		mergeSort(vet, mid, end);
+		merge(vet, begin, mid, end);
+			
 	}
 }
 
